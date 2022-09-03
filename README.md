@@ -5,22 +5,21 @@
 This neural network predicts whether or not a heart attack will occur based on multiple different factors. The model will predict a value close to 0 if the a heart attack is predicted to be unlikely and a 1 if a heart attack is predicted to be likely. Since the model only predicts binary categorical values, the model uses a binary crossentropy loss function and has 1 output neuron. The model uses a standard Adam optimizer with a learning rate of 0.001 and multiple dropout layers to prevent overfitting. The model has an architecture consisting of:
 - 1 Batch Normalization layer
 - 1 Input layer (with 64 input neurons and a ReLU activation function)
-- 4 Hidden layers (each with 64 neurons and a ReLU activation function)
-- 3 Dropout layers (one after each hidden layer and input layer and each with a dropout rate of 0.4)
+- 4 Hidden layers (3 with 128 neurons and one with 256 neurons, each with a ReLU activation function)
+- 2 Dropout layers (one after the first hidden layer and one after the last hidden layer, each with a dropout rate of 0.3)
 - 1 Output layer (with 1 output neuron and a sigmoid activation function)
 
 Feel free to further tune the hyperparameters or build upon the model!
 
 ## The Dataset
-The dataset can be found at this link: https://www.kaggle.com/datasets/jillanisofttech/brain-stroke-dataset. Credit for the dataset collection goes to **whxna-0615**, **stpete_ishii**, and others on *Kaggle*. It describes whether or not a person will have a stroke (encoded as 0 or 1) based on multiple factors, including:
+The dataset can be found at this link: https://www.kaggle.com/datasets/rashikrahmanpritom/heart-attack-analysis-prediction-dataset?resource=download&select=heart.csv. Credit for the dataset collection goes to **Naman Manchanda**, **Durgance Gaur**, **Fahad Mehfooz** and others on *Kaggle*. It describes whether or not a heart attack is likely (encoded as 0 or 1) based on multiple factors, including:
 - Age
-- Hypertension (0 : no patient hypertension, 1 : hypertension within patient)
-- Average glucose level 
-- Body mass index (BMI)
-- Smoking status
+- Number of major vessels (0-3)
+- Type of chest pain (0 : typical angina, 1 : atypical angina, 2 :  non-anginal pain, 3 : asymptomatic 
+- Cholesterol
+- Maximum achieved heart rate
 
-Note that the initial dataset is biased (this statistic can be found on the data's webpage); it contains a higher representation of non-stroke cases (encoded as 0's in this model) than stroke cases (encoded as 1's in this model). This issue is addressed within the classifier file using 
-Imbalanced-Learn's **SMOTE()**, which oversamples the minority class within the dataset.
+A full description of all included features can be found on the dataset's webpage. Note that the initial dataset is biased (this statistic can be found on the data's webpage); it contains a higher representation of heart attack cases (encoded as 1's in this model) than non-heart attack cases (encoded as 0's in this model). This issue is addressed within the classifier file using  Imbalanced-Learn's **SMOTE()**, which oversamples the minority class within the dataset. Also note that the data is scaled with Scikit-Learn's **StandardScaler()** before being fed into the model. 
 
 ## Libraries
 This neural network was created with the help of the Tensorflow, Imbalanced-Learn, and Scikit-Learn libraries.
